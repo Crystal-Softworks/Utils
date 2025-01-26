@@ -2,7 +2,9 @@ if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMen
 
 if not game:IsLoaded() then
 	
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/Crystal-Softworks/Utils/refs/heads/main/Moderation.luau'))()
+	game.Loaded:Wait()
+	
+	warn("[ Survival Odyssey Moderation ] : Loaded!")
 	
 end
 
@@ -390,7 +392,6 @@ local HttpService = game:GetService("HttpService")
 local JobId = game.JobId
 local userIds = {}
 local currentIndex = 1
-local camera = workspace.CurrentCamera
 
 queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 
@@ -425,6 +426,7 @@ local function serverHop()
 end
 
 local function spectateUser(userId)
+	local camera = workspace.CurrentCamera
 	local player = Players:GetPlayerByUserId(userId)
 
 	if player and player.Character then

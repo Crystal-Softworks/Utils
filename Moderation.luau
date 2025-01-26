@@ -1,13 +1,3 @@
-if game.CoreGui:FindFirstChild("MainModeration") then game.CoreGui.MainModeration:Destroy() end
-
-if not game:IsLoaded() then
-
-    game.Loaded:Wait()
-
-    print("[ Survival Odyssey Moderation ] : Loaded!")
-
-end
-
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local Next = Instance.new("Frame")
@@ -53,7 +43,7 @@ end
 -- Properties
 
 MainModeration.Name = "MainModeration"
-MainModeration.Parent = game.CoreGui or game.Players.LocalPlayer:WaitForChild("PlayerGui")
+MainModeration.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 MainModeration.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 Main.Name = "Main"
@@ -394,6 +384,12 @@ local userIds = {}
 local currentIndex = 1
 local camera = workspace.CurrentCamera
 
+queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+
+Players.LocalPlayer.OnTeleport:Connect(function(State)
+	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/Crystal-Softworks/Utils/refs/heads/main/Moderation.luau'))()")
+end)
+
 httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 
 local function serverHop()
@@ -512,7 +508,6 @@ Exit.Button.MouseButton1Click:Connect(function()
 		currentIndex = table.find(userIds, player.UserId) or 1
 		updateUserProfile()
 	end
-    game.CoreGui.MainModeration:Destroy()
 end)
 
 for _, player in ipairs(Players:GetPlayers()) do

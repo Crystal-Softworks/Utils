@@ -2,7 +2,7 @@ if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMen
 
 if not game:IsLoaded() then
 
-	repeat wait() until game:IsLoaded()
+	game.Loaded:Wait()
 
 end
 

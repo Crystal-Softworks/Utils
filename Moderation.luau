@@ -482,8 +482,8 @@ end
 local function onPlayerAdded(player)
 	table.insert(userIds, player.UserId)
 	if #userIds == 1 then
-		currentIndex = 1
-		updateUserProfile()
+		--currentIndex = 1
+		--updateUserProfile()
 	end
 end
 

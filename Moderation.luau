@@ -1,11 +1,11 @@
 if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMenu:Destroy() end
 
 if not game:IsLoaded() then
-	
-	game.Loaded:Wait()
-	
+
+	repeat task.wait() until game:IsLoaded()
+
 	warn("[ Survival Odyssey Moderation ] : Loaded!")
-	
+
 end
 
 local MainModeration = Instance.new("ScreenGui")
@@ -426,12 +426,16 @@ local function serverHop()
 end
 
 local function spectateUser(userId)
+	print("Called")
 	local camera = workspace.CurrentCamera
+	print("Camera:", camera)
 	local player = Players:GetPlayerByUserId(userId)
 
+	print("2")
 	if player and player.Character then
 		local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
 		if humanoid then
+			print("Set")
 			camera.CameraSubject = humanoid
 		else
 			camera.CameraSubject = nil
@@ -448,6 +452,7 @@ local function updateUserProfile()
 	local userId = userIds[currentIndex]
 	if not userId then return end
 
+	print("Spectate")
 	spectateUser(userId)
 
 	local successThumbnail, thumbnailUrl = pcall(function()
@@ -527,6 +532,7 @@ Exit.Button.MouseButton1Click:Connect(function()
 		currentIndex = table.find(userIds, player.UserId) or 1
 		updateUserProfile()
 	end
+	game.CoreGui.ModerationMenu:Destroy()
 end)
 
 for _, player in ipairs(Players:GetPlayers()) do
@@ -536,7 +542,11 @@ end
 Players.PlayerAdded:Connect(onPlayerAdded)
 Players.PlayerRemoving:Connect(onPlayerRemoving)
 
+repeat task.wait()
+
 if #userIds > 0 then
 	currentIndex = 1
 	updateUserProfile()
 end
+
+until game:IsLoaded() == true

@@ -1,3 +1,16 @@
+if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMenu:Destroy() end
+
+if not game:IsLoaded() then
+	
+	game.Loaded:Wait()
+	
+	local JobId = game.JobId
+	local userIds = {}
+	local currentIndex = 1
+	local camera = workspace.CurrentCamera
+	
+end
+
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local Next = Instance.new("Frame")
@@ -407,8 +420,6 @@ local function serverHop()
 		end
 
 		if #servers > 0 then
-			userIds = {}
-			currentIndex = 1
 			TeleportService:TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)], Players.LocalPlayer)
 		else
 			warn("Couldn't find a server.")

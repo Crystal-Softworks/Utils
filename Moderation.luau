@@ -407,6 +407,8 @@ local function serverHop()
 		end
 
 		if #servers > 0 then
+			userIds = {}
+			currentIndex = 1
 			TeleportService:TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)], Players.LocalPlayer)
 		else
 			warn("Couldn't find a server.")

@@ -2,9 +2,7 @@ if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMen
 
 if not game:IsLoaded() then
 
-	repeat task.wait() until game:IsLoaded()
-
-	warn("[ Survival Odyssey Moderation ] : Loaded!")
+	repeat wait() until game:IsLoaded()
 
 end
 
@@ -418,32 +416,32 @@ local function serverHop()
 		if #servers > 0 then
 			TeleportService:TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)], Players.LocalPlayer)
 		else
-			warn("Couldn't find a server.")
+			--warn("Couldn't find a server.")
 		end
 	else
-		warn("Your exploit does not support this command (missing HTTP request)")
+		--warn("Your exploit does not support this command (missing HTTP request)")
 	end
 end
 
 local function spectateUser(userId)
-	print("Called")
+	--print("Called")
 	local camera = workspace.CurrentCamera
-	print("Camera:", camera)
+	--print("Camera:", camera)
 	local player = Players:GetPlayerByUserId(userId)
 
-	print("2")
+	--print("2")
 	if player and player.Character then
 		local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
 		if humanoid then
-			print("Set")
+			--print("Set")
 			camera.CameraSubject = humanoid
 		else
 			camera.CameraSubject = nil
-			warn("Humanoid not found in the player's character!")
+			--warn("Humanoid not found in the player's character!")
 		end
 	else
 		camera.CameraSubject = nil
-		warn("Player or character is invalid!")
+		--warn("Player or character is invalid!")
 	end
 end
 
@@ -452,7 +450,7 @@ local function updateUserProfile()
 	local userId = userIds[currentIndex]
 	if not userId then return end
 
-	print("Spectate")
+	--print("Spectate")
 	spectateUser(userId)
 
 	local successThumbnail, thumbnailUrl = pcall(function()
@@ -550,3 +548,5 @@ if #userIds > 0 then
 end
 
 until game:IsLoaded() == true
+
+warn("[ Survival Odyssey Moderation ] : Loaded!")

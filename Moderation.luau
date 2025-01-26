@@ -2,12 +2,7 @@ if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMen
 
 if not game:IsLoaded() then
 	
-	game.Loaded:Wait()
-	
-	local JobId = game.JobId
-	local userIds = {}
-	local currentIndex = 1
-	local camera = workspace.CurrentCamera
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/Crystal-Softworks/Utils/refs/heads/main/Moderation.luau'))()
 	
 end
 

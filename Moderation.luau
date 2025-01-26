@@ -418,12 +418,21 @@ end
 
 local function spectateUser(userId)
 	local player = Players:GetPlayerByUserId(userId)
-	if player and player.Character and player.Character:FindFirstChild("Humanoid") then
-		camera.CameraSubject = player.Character.Humanoid
+
+	if player and player.Character then
+		local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+		if humanoid then
+			camera.CameraSubject = humanoid
+		else
+			camera.CameraSubject = nil
+			warn("Humanoid not found in the player's character!")
+		end
 	else
 		camera.CameraSubject = nil
+		warn("Player or character is invalid!")
 	end
 end
+
 
 local function updateUserProfile()
 	local userId = userIds[currentIndex]

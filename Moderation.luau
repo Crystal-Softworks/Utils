@@ -494,7 +494,7 @@ local function onPlayerRemoving(player)
 			if currentIndex > #userIds then
 				currentIndex = #userIds
 			end
-			updateUserProfile()
+			--updateUserProfile()
 			break
 		end
 	end

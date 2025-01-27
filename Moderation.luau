@@ -525,12 +525,16 @@ Back.Button.MouseButton1Click:Connect(function()
 end)
 
 Exit.Button.MouseButton1Click:Connect(function()
+    for i,v in next, game.CoreGui:GetChildren() do
+        if v.Name == "MainModeration" then
+            v:Destroy()
+        end
+    end
 	local player = Players.LocalPlayer
 	if player then
 		currentIndex = table.find(userIds, player.UserId) or 1
 		updateUserProfile()
 	end
-	game.CoreGui.ModerationMenu:Destroy()
 end)
 
 for _, player in ipairs(Players:GetPlayers()) do

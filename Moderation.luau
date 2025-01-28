@@ -67,7 +67,7 @@ function Hover(Frame)
 	local function RemoveStroke()
 		local UIStroke = Frame:FindFirstChildOfClass("UIStroke")
 		if UIStroke then
-			local Info = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+			local Info = TweenInfo.new(0.25, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 			local Properties = { Transparency = 1 }
 			local Tween = TweenService:Create(UIStroke, Info, Properties)
 			Tween:Play()

@@ -59,7 +59,7 @@ function Hover(Frame)
 		UIStroke.Color = Color3.new(1, 1, 1)
 		UIStroke.Parent = Frame
 
-		local Info = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+		local Info = TweenInfo.new(0.25, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 		local Properties = { Transparency = 0 }
 		TweenService:Create(UIStroke, Info, Properties):Play()
 	end

@@ -1,4 +1,5 @@
 if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMenu:Destroy() end
+if game.Players.LocalPlayer.PlayerGui:FindFirstChild("ModerationMenu") then game.Players.LocalPlayer.PlayerGui.ModerationMenu:Destroy() end
 
 if not game:IsLoaded() then
 
@@ -48,6 +49,46 @@ local function AddGradient(thing)
 
 end
 
+function Hover(Frame)
+	local TweenService = game:GetService("TweenService")
+
+	local function AddStroke()
+		local UIStroke = Instance.new("UIStroke")
+		UIStroke.Thickness = 1.5
+		UIStroke.Transparency = 1
+		UIStroke.Color = Color3.new(1, 1, 1)
+		UIStroke.Parent = Frame
+
+		local Info = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+		local Properties = { Transparency = 0 }
+		TweenService:Create(UIStroke, Info, Properties):Play()
+	end
+
+	local function RemoveStroke()
+		local UIStroke = Frame:FindFirstChildOfClass("UIStroke")
+		if UIStroke then
+			local Info = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+			local Properties = { Transparency = 1 }
+			local Tween = TweenService:Create(UIStroke, Info, Properties)
+			Tween:Play()
+
+			Tween.Completed:Connect(function()
+				UIStroke:Destroy()
+			end)
+		end
+	end
+
+	Frame.MouseEnter:Connect(function()
+		AddStroke()
+	end)
+
+	Frame.MouseLeave:Connect(function()
+		RemoveStroke()
+	end)
+end
+
+
+
 -- Properties
 
 MainModeration.Name = "MainModeration"
@@ -71,6 +112,8 @@ Next.Position = UDim2.new(0.5950463601, 0, 0.044926092, 0)
 Next.Size = UDim2.new(0, 100, 0, 40)
 Next.ZIndex = 8
 
+Hover(Next)
+
 UICorner.Parent = Next
 UICorner.CornerRadius = UDim.new(0, 6)
 
@@ -91,6 +134,8 @@ SHop.BorderSizePixel = 0
 SHop.Position = UDim2.new(0.5950463601, 0, 0.116684591, 0)
 SHop.Size = UDim2.new(0, 100, 0, 40)
 SHop.ZIndex = 8
+
+Hover(SHop)
 
 UICorner_9.Parent = SHop
 UICorner_9.CornerRadius = UDim.new(0, 6)
@@ -184,6 +229,7 @@ Back.BorderSizePixel = 0
 Back.Position = UDim2.new(0.3380000007, 0, 0.0460000001, 0)
 Back.Size = UDim2.new(0, 100, 0, 40)
 Back.ZIndex = 8
+Hover(Back)
 
 UICorner_3.Parent = Back
 UICorner_3.CornerRadius = UDim.new(0, 6)
@@ -238,6 +284,7 @@ Exit.BorderSizePixel = 0
 Exit.Position = UDim2.new(0.3380000007, 0, 0.116684591, 0)
 Exit.Size = UDim2.new(0, 100, 0, 40)
 Exit.ZIndex = 8
+Hover(Exit)
 
 UICorner_5.Parent = Exit
 UICorner_5.CornerRadius = UDim.new(0, 6)
@@ -384,6 +431,229 @@ Username.TextColor3 = Color3.new(1, 1, 1)
 Username.TextSize = 19
 Username.TextXAlignment = Enum.TextXAlignment.Left
 
+local Ban = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Gradient = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local Button = Instance.new("TextButton")
+local Text = Instance.new("TextLabel")
+local Reason = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+local Gradient_2 = Instance.new("Frame")
+local UICorner_4 = Instance.new("UICorner")
+local Button_2 = Instance.new("TextButton")
+local Text_2 = Instance.new("TextBox")
+
+-- Properties
+
+Ban.Name = "Ban"
+Ban.Parent = Main
+Ban.BackgroundColor3 = Color3.new(0.737255, 0.12549, 0.133333)
+Ban.BorderColor3 = Color3.new(0, 0, 0)
+Ban.BorderSizePixel = 0
+Ban.Position = UDim2.new(0.405, 0, 0.17, 0)
+Ban.Size = UDim2.new(0, 180, 0, 40)
+Ban.ZIndex = 8
+Hover(Ban)
+
+UICorner.Parent = Ban
+UICorner.CornerRadius = UDim.new(0, 6)
+
+Gradient.Name = "Gradient"
+Gradient.Parent = Ban
+Gradient.BackgroundColor3 = Color3.new(1, 1, 1)
+Gradient.BorderColor3 = Color3.new(0, 0, 0)
+Gradient.BorderSizePixel = 0
+Gradient.Size = UDim2.new(1, 0, 1, 0)
+Gradient.ZIndex = 8
+
+AddGradient(Gradient)
+
+UICorner_2.Parent = Gradient
+UICorner_2.CornerRadius = UDim.new(0, 6)
+
+Button.Name = "Button"
+Button.Parent = Ban
+Button.BackgroundColor3 = Color3.new(1, 1, 1)
+Button.BackgroundTransparency = 1
+Button.BorderColor3 = Color3.new(0, 0, 0)
+Button.BorderSizePixel = 0
+Button.Size = UDim2.new(1, 0, 1, 0)
+Button.ZIndex = 9
+Button.AutoButtonColor = false
+Button.Font = Enum.Font.SourceSans
+Button.Text = ""
+Button.TextColor3 = Color3.new(0, 0, 0)
+Button.TextSize = 1
+Button.TextTransparency = 1
+
+Text.Name = "Text"
+Text.Parent = Ban
+Text.BackgroundColor3 = Color3.new(1, 1, 1)
+Text.BackgroundTransparency = 1
+Text.BorderColor3 = Color3.new(0, 0, 0)
+Text.BorderSizePixel = 0
+Text.Size = UDim2.new(1, 0, 1, 0)
+Text.ZIndex = 8
+Text.Font = Enum.Font.SourceSansBold
+Text.Text = "Ban"
+Text.TextColor3 = Color3.new(1, 1, 1)
+Text.TextSize = 25
+Text.TextTransparency = 0.05000000074505806
+Text.TextWrapped = true
+
+Reason.Name = "Reason"
+Reason.Parent = Main
+Reason.BackgroundColor3 = Color3.new(0.764706, 0.203922, 0.87451)
+Reason.BorderColor3 = Color3.new(0, 0, 0)
+Reason.BorderSizePixel = 0
+Reason.Position = UDim2.new(0.517, 0, 0.17, 0)
+Reason.Size = UDim2.new(0, 115, 0, 40)
+Reason.ZIndex = 8
+Hover(Reason)
+
+UICorner_3.Parent = Reason
+UICorner_3.CornerRadius = UDim.new(0, 6)
+
+Gradient_2.Name = "Gradient"
+Gradient_2.Parent = Reason
+Gradient_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Gradient_2.BorderColor3 = Color3.new(0, 0, 0)
+Gradient_2.BorderSizePixel = 0
+Gradient_2.Size = UDim2.new(1, 0, 1, 0)
+Gradient_2.ZIndex = 8
+AddGradient(Gradient_2)
+
+UICorner_4.Parent = Gradient_2
+UICorner_4.CornerRadius = UDim.new(0, 6)
+
+Button_2.Name = "Button"
+Button_2.Parent = Reason
+Button_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Button_2.BackgroundTransparency = 1
+Button_2.BorderColor3 = Color3.new(0, 0, 0)
+Button_2.BorderSizePixel = 0
+Button_2.Size = UDim2.new(1, 0, 1, 0)
+Button_2.ZIndex = 9
+Button_2.AutoButtonColor = false
+Button_2.Font = Enum.Font.SourceSans
+Button_2.Text = ""
+Button_2.TextColor3 = Color3.new(0, 0, 0)
+Button_2.TextSize = 1
+Button_2.TextTransparency = 1
+
+Text_2.Name = "Text"
+Text_2.Parent = Reason
+Text_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Text_2.BackgroundTransparency = 1
+Text_2.BorderColor3 = Color3.new(0, 0, 0)
+Text_2.BorderSizePixel = 0
+Text_2.Position = UDim2.new(0.121739127, 0, 0, 0)
+Text_2.Size = UDim2.new(0, 101, 0, 40)
+Text_2.ZIndex = 9
+Text_2.Font = Enum.Font.SourceSansSemibold
+Text_2.PlaceholderColor3 = Color3.new(0.901961, 0.901961, 0.901961)
+Text_2.PlaceholderText = "Reason..."
+Text_2.Text = ""
+Text_2.TextColor3 = Color3.new(1, 1, 1)
+Text_2.TextSize = 16
+Text_2.TextXAlignment = Enum.TextXAlignment.Left
+
+
+
+local TweenService = game:GetService("TweenService")
+
+local Notifications = Instance.new("Frame")
+Notifications.Name = "Notifications"
+Notifications.Parent = Main
+Notifications.BackgroundTransparency = 1
+Notifications.Position = UDim2.new(0, 0, 0.81155777, 0)
+Notifications.Size = UDim2.new(0, 218, 0, 150)
+
+local Icons = {
+
+	wrench = "rbxassetid://10747383470",
+	moderate = "rbxassetid://10723395896"
+
+}
+
+local function CreateNotification(title, description, icon, duration)
+	local Notification = Instance.new("Frame")
+	local Gradient = Instance.new("Frame")
+	local UICorner = Instance.new("UICorner")
+	local UICorner_2 = Instance.new("UICorner")
+	local Icon = Instance.new("ImageLabel")
+	local Title = Instance.new("TextLabel")
+	local Description = Instance.new("TextLabel")
+
+	Notification.Name = "Notification"
+	Notification.Parent = Notifications
+	Notification.BackgroundColor3 = Color3.new(0.737255, 0.12549, 0.133333)
+	Notification.BorderSizePixel = 0
+	Notification.Size = UDim2.new(0, 209, 0, 80)
+	Notification.Position = UDim2.new(-1, 0, 0, 0)
+
+	Gradient.Name = "Gradient"
+	Gradient.Parent = Notification
+	Gradient.Size = UDim2.new(1, 0, 1, 0)
+	UICorner.Parent = Gradient
+	UICorner.CornerRadius = UDim.new(0, 6)
+	AddGradient(Gradient)
+
+	UICorner_2.Parent = Notification
+	UICorner_2.CornerRadius = UDim.new(0, 6)
+
+	Icon.Name = "Icon"
+	Icon.Parent = Notification
+	Icon.BackgroundTransparency = 1
+	Icon.Position = UDim2.new(0.07, 0, 0.18, 0)
+	Icon.Size = UDim2.new(0, 50, 0, 50)
+	Icon.Image = icon
+
+	Title.Name = "Title"
+	Title.Parent = Notification
+	Title.BackgroundTransparency = 1
+	Title.Position = UDim2.new(0.4, 0, 0.23, 0)
+	Title.Size = UDim2.new(0, 95, 0, 11)
+	Title.Font = Enum.Font.SourceSansBold
+	Title.Text = title
+	Title.TextColor3 = Color3.new(1, 1, 1)
+	Title.TextSize = 22
+	Title.TextXAlignment = Enum.TextXAlignment.Left
+
+	Description.Name = "Description"
+	Description.Parent = Notification
+	Description.BackgroundTransparency = 1
+	Description.Position = UDim2.new(0.4, 0, 0.47, 0)
+	Description.Size = UDim2.new(0, 107, 0, 34)
+	Description.Font = Enum.Font.SourceSansSemibold
+	Description.Text = description
+	Description.TextColor3 = Color3.new(1, 1, 1)
+	Description.TextSize = 16
+	Description.TextWrapped = true
+	Description.TextXAlignment = Enum.TextXAlignment.Left
+	Description.TextYAlignment = Enum.TextYAlignment.Top
+
+	local slideInTween = TweenService:Create(
+		Notification,
+		TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+		{ Position = UDim2.new(0, 40, 0, 0) } -- Position in view
+	)
+	slideInTween:Play()
+
+	task.delay(duration or 5, function()
+		local slideOutTween = TweenService:Create(
+			Notification,
+			TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+			{ Position = UDim2.new(-1, 0, 0, 0) }
+		)
+		slideOutTween:Play()
+		slideOutTween.Completed:Connect(function()
+			Notification:Destroy()
+		end)
+	end)
+end
+
 local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
 local HttpService = game:GetService("HttpService")
@@ -525,16 +795,26 @@ Back.Button.MouseButton1Click:Connect(function()
 end)
 
 Exit.Button.MouseButton1Click:Connect(function()
-    for i,v in next, game.CoreGui:GetChildren() do
-        if v.Name == "MainModeration" then
-            v:Destroy()
-        end
-    end
+	for i,v in next, game.CoreGui:GetChildren() do
+		if v.Name == "MainModeration" then
+			v:Destroy()
+		end
+	end
 	local player = Players.LocalPlayer
 	if player then
 		currentIndex = table.find(userIds, player.UserId) or 1
 		updateUserProfile()
 	end
+end)
+
+Ban.Button.MouseButton1Click:Connect(function()
+	local function RemoveAtSymbol(inputString)
+		return string.gsub(inputString, "@", "")
+	end
+
+	CreateNotification("Ban Request", "Request Sent For: "..RemoveAtSymbol(User.Username.Text), Icons.moderate, 2)
+	
+	--ban user with reason Reason.Text.Text
 end)
 
 for _, player in ipairs(Players:GetPlayers()) do
@@ -546,11 +826,12 @@ Players.PlayerRemoving:Connect(onPlayerRemoving)
 
 repeat task.wait()
 
-if #userIds > 0 then
-	currentIndex = 1
-	updateUserProfile()
-end
+	if #userIds > 0 then
+		currentIndex = 1
+		updateUserProfile()
+	end
 
 until game:IsLoaded() == true
 
 warn("[ Survival Odyssey Moderation ] : Loaded!")
+CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)

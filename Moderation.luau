@@ -2,7 +2,7 @@ if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMen
 if game.Players.LocalPlayer.PlayerGui:FindFirstChild("ModerationMenu") then game.Players.LocalPlayer.PlayerGui.ModerationMenu:Destroy() end
 
 game.Players.LocalPlayer:SetAttribute("nickname", "Moderation Account #001")
-game.Players.LocalPlayer.TeamColor = BrickColor3.new("Hot pink")
+game.Players.LocalPlayer.TeamColor = BrickColor.new("Hot pink")
 
 if not game:IsLoaded() then
 

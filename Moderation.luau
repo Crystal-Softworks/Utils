@@ -53,7 +53,9 @@ end
 
 -- Wait for initial guiPath
 while true do
-    updateGuiPath()
+    if not guiPath then
+        updateGuiPath()
+    end
     task.wait(0.1)
 end
 

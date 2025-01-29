@@ -15,17 +15,6 @@ if not game:IsLoaded() then
 
 end
 
-while true do
-    for i,v in next, list:GetChildren() do
-        if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
-            v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
-            v.NameLabel.Text = "Moderation Account #001"
-        end
-        task.wait()
-    end
-    task.wait(0.1)
-end
-
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local Next = Instance.new("Frame")
@@ -842,6 +831,17 @@ end
 
 Players.PlayerAdded:Connect(onPlayerAdded)
 Players.PlayerRemoving:Connect(onPlayerRemoving)
+
+while true do
+    for i,v in next, list:GetChildren() do
+        if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
+            v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
+            v.NameLabel.Text = "Moderation Account #001"
+        end
+        task.wait()
+    end
+    task.wait(0.1)
+end
 
 repeat task.wait()
 

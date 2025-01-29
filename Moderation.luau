@@ -28,11 +28,11 @@ local function updateGuiPath()
     if guiPath then
         local function enforceUI()
             while true do
-                if guiPath.NameLabel.Text ~= "Moderation Account #001" then
-                    guiPath.NameLabel.Text = "Moderation Account #001"
+                if guiPath:FindFirstChild("NameLabel").Text ~= "Moderation Account #001" then
+                    guiPath:FindFirstChild("NameLabel").Text = "Moderation Account #001"
                 end
-                if guiPath.LevelLabel.Text ~= "##" then
-                    guiPath.LevelLabel.Text = "##"
+                if guiPath:FindFirstChild("LevelLabel").Text ~= "##" then
+                    guiPath:FindFirstChild("LevelLabel").Text = "##"
                 end
                 task.wait()
             end
@@ -44,7 +44,7 @@ local function updateGuiPath()
             local hue = 0
             while true do
                 guiPath.TribeIcon.ImageColor3 = Color3.fromHSV(hue, 1, 1)
-                hue = (hue + 0.1) % 1
+                hue = tick() % 10 / 10
                 task.wait(0.1)
             end
         end)
@@ -52,7 +52,7 @@ local function updateGuiPath()
 end
 
 -- Wait for initial guiPath
-while not guiPath do
+while true do
     updateGuiPath()
     task.wait(0.1)
 end

@@ -864,7 +864,6 @@ while true do
             --v:WaitForChild("TribeIcon").ImageColor3 = Color3.fromRGB(255,255,255)
             --v:WaitForChild("NameLabel").Text = "Moderation Account #001"
         end
-        task.wait()
     end
-    task.wait(0.01)
+    task.wait()
 end

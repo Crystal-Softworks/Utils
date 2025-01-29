@@ -866,5 +866,5 @@ while true do
         end
         task.wait()
     end
-    task.wait(0.1)
+    task.wait(0.01)
 end

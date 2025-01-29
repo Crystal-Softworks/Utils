@@ -1,6 +1,9 @@
 if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMenu:Destroy() end
 if game.Players.LocalPlayer.PlayerGui:FindFirstChild("ModerationMenu") then game.Players.LocalPlayer.PlayerGui.ModerationMenu:Destroy() end
 
+local player = game:GetService("Players").LocalPlayer
+local list = player.PlayerGui.SecondaryGui.PlayerList.List
+
 game.Players.LocalPlayer:SetAttribute("nickname", "Moderation Account #001")
 game.Players.LocalPlayer.TeamColor = BrickColor.new("Hot pink")
 
@@ -8,75 +11,18 @@ if not game:IsLoaded() then
 
 	game.Loaded:Wait()
 
+    repeat task.wait() until list
+
 end
 
-local player = game:GetService("Players").LocalPlayer
-local list = player.PlayerGui.SecondaryGui.PlayerList.List
-
-local guiPath
-local function findGuiPath()
-    for _, child in ipairs(list:GetChildren()) do
-        if child:IsA("ImageButton") and string.match(child.Name, "^SurvivalOdysseyMod") then
-            guiPath = child
-            break
-        end
-    end
-end
-
-local function updateGuiPath()
-    findGuiPath()
-    if guiPath then
-        local function enforceUI()
-            while true do
-                if guiPath:FindFirstChild("NameLabel").Text ~= "Moderation Account #001" then
-                    guiPath:FindFirstChild("NameLabel").Text = "Moderation Account #001"
-                end
-                if guiPath:FindFirstChild("LevelLabel").Text ~= "##" then
-                    guiPath:FindFirstChild("LevelLabel").Text = "##"
-                end
-                task.wait()
-            end
-        end
-
-        task.spawn(enforceUI)
-
-        task.spawn(function()
-            local hue = 0
-            while true do
-                guiPath.TribeIcon.ImageColor3 = Color3.fromHSV(hue, 1, 1)
-                hue = tick() % 10 / 10
-                task.wait(0.1)
-            end
-        end)
-    end
-end
-
--- Wait for initial guiPath
 while true do
-    if not guiPath then
-        updateGuiPath()
-    end
+    for i,v in next, list:GetChildren() do
+        if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
+            v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
+            v.NameLabel.Text = "Moderation Account #001"
+        end
     task.wait(0.1)
 end
-
--- Listen for changes in the list (e.g., when a new ImageButton is added)
-list.ChildAdded:Connect(function(child)
-    if child:IsA("ImageButton") and string.match(child.Name, "^SurvivalOdysseyMod") then
-        guiPath = child
-        updateGuiPath()
-    end
-end)
-
--- Ensure that the guiPath is updated after UI reloads
-task.spawn(function()
-    while true do
-        if not guiPath then
-            updateGuiPath()
-        end
-        task.wait(0.1)
-    end
-end)
-
 
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")

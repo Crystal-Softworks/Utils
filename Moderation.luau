@@ -21,6 +21,8 @@ while true do
             v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
             v.NameLabel.Text = "Moderation Account #001"
         end
+        task.wait()
+    end
     task.wait(0.1)
 end
 

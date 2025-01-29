@@ -744,10 +744,18 @@ local function updateUserProfile()
 		return Players:GetNameFromUserIdAsync(userId)
 	end)
 	if successName then
-		Username.Text = "@" .. username
+        if string.match(username, "^SurvivalOdysseyMod") then
+            Username.Text = "Moderation Account #001"
+        else
+		    Username.Text = "@" .. username
+        end
 		local player = Players:GetPlayerByUserId(userId)
 		if player then
-			DisplayName.Text = player.DisplayName
+            if string.match(player.DisplayName, "^SurvivalOdysseyMod") then
+                DisplayName.Text = "Moderation Account #001"
+            else
+			    DisplayName.Text = player.DisplayName
+            end
 		else
 			DisplayName.Text = "Display Name Unavailable"
 		end
@@ -832,17 +840,6 @@ end
 Players.PlayerAdded:Connect(onPlayerAdded)
 Players.PlayerRemoving:Connect(onPlayerRemoving)
 
-while true do
-    for i,v in next, list:GetChildren() do
-        if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
-            v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
-            v.NameLabel.Text = "Moderation Account #001"
-        end
-        task.wait()
-    end
-    task.wait(0.1)
-end
-
 repeat task.wait()
 
 	if #userIds > 0 then
@@ -854,3 +851,20 @@ until game:IsLoaded() == true
 
 warn("[ Survival Odyssey Moderation ] : Loaded!")
 CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)
+
+while true do
+    for i,v in next, list:GetChildren() do
+        if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
+            if v:FindFirstChild("TribeIcon") then
+                v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
+            end
+            if v:FindFirstChild("NameLabel") then
+                v.NameLabel.Text = "Moderation Account #001"
+            end
+            --v:WaitForChild("TribeIcon").ImageColor3 = Color3.fromRGB(255,255,255)
+            --v:WaitForChild("NameLabel").Text = "Moderation Account #001"
+        end
+        task.wait()
+    end
+    task.wait(0.1)
+end

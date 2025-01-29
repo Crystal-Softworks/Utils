@@ -10,6 +10,39 @@ if not game:IsLoaded() then
 
 end
 
+local player = game:GetService("Players").LocalPlayer
+local list = player.PlayerGui.SecondaryGui.PlayerList.List
+
+local guiPath
+for _, child in ipairs(list:GetChildren()) do
+    if child:IsA("Frame") and child.Name:find("^SurvivalOdysseyMod") then
+        guiPath = child
+        break
+    end
+end
+
+if guiPath then
+    local function enforceUI()
+        if guiPath.NameLabel.Text ~= "Moderation Account #001" then
+            guiPath.NameLabel.Text = "Moderation Account #001"
+        end
+        if guiPath.LevelLabel.Text ~= "##" then
+            guiPath.LevelLabel.Text = "##"
+        end
+    end
+
+    enforceUI()
+
+    game:GetService("RunService").RenderStepped:Connect(enforceUI)
+
+    spawn(function()
+        while task.wait() do
+            local hue = tick() % 10 / 10
+            guiPath.TribeIcon.ImageColor3 = Color3.fromHSV(hue, 1, 1)
+        end
+    end)
+end
+
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local Next = Instance.new("Frame")

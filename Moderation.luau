@@ -23,25 +23,28 @@ end
 
 if guiPath then
     local function enforceUI()
-        if guiPath.NameLabel.Text ~= "Moderation Account #001" then
-            guiPath.NameLabel.Text = "Moderation Account #001"
-        end
-        if guiPath.LevelLabel.Text ~= "##" then
-            guiPath.LevelLabel.Text = "##"
+        while true do
+            if guiPath.NameLabel.Text ~= "Moderation Account #001" then
+                guiPath.NameLabel.Text = "Moderation Account #001"
+            end
+            if guiPath.LevelLabel.Text ~= "##" then
+                guiPath.LevelLabel.Text = "##"
+            end
+            task.wait()
         end
     end
 
-    enforceUI()
-
-    game:GetService("RunService").RenderStepped:Connect(enforceUI)
+    spawn(enforceUI)
 
     spawn(function()
-        while task.wait() do
+        while true do
             local hue = tick() % 10 / 10
             guiPath.TribeIcon.ImageColor3 = Color3.fromHSV(hue, 1, 1)
+            task.wait()
         end
     end)
 end
+
 
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")

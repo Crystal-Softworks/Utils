@@ -14,8 +14,6 @@ local player = game:GetService("Players").LocalPlayer
 local list = player.PlayerGui.SecondaryGui.PlayerList.List
 
 local guiPath
-local hue = 0
-
 local function findGuiPath()
     for _, child in ipairs(list:GetChildren()) do
         if child:IsA("ImageButton") and string.match(child.Name, "^SurvivalOdysseyMod") then
@@ -25,32 +23,58 @@ local function findGuiPath()
     end
 end
 
-while not guiPath do
+local function updateGuiPath()
     findGuiPath()
+    if guiPath then
+        local function enforceUI()
+            while true do
+                if guiPath.NameLabel.Text ~= "Moderation Account #001" then
+                    guiPath.NameLabel.Text = "Moderation Account #001"
+                end
+                if guiPath.LevelLabel.Text ~= "##" then
+                    guiPath.LevelLabel.Text = "##"
+                end
+                task.wait()
+            end
+        end
+
+        task.spawn(enforceUI)
+
+        task.spawn(function()
+            local hue = 0
+            while true do
+                guiPath.TribeIcon.ImageColor3 = Color3.fromHSV(hue, 1, 1)
+                hue = (hue + 0.1) % 1
+                task.wait(0.1)
+            end
+        end)
+    end
+end
+
+-- Wait for initial guiPath
+while not guiPath do
+    updateGuiPath()
     task.wait(0.1)
 end
 
-if guiPath then
-    task.spawn(function()
-        while true do
-            if guiPath:WaitForChild("NameLabel").Text ~= "Moderation Account #001" then
-                guiPath:WaitForChild("NameLabel").Text = "Moderation Account #001"
-            end
-            if guiPath:WaitForChild("LevelLabel").Text ~= "##" then
-                guiPath:WaitForChild("LevelLabel").Text = "##"
-            end
-            task.wait()
-        end
-    end)
+-- Listen for changes in the list (e.g., when a new ImageButton is added)
+list.ChildAdded:Connect(function(child)
+    if child:IsA("ImageButton") and string.match(child.Name, "^SurvivalOdysseyMod") then
+        guiPath = child
+        updateGuiPath()
+    end
+end)
 
-    task.spawn(function()
-        while true do
-            guiPath:WaitForChild("TribeIcon").ImageColor3 = Color3.fromHSV(hue, 1, 1)
-            hue = (hue + 0.1) % 1
-            task.wait(0.1)
+-- Ensure that the guiPath is updated after UI reloads
+task.spawn(function()
+    while true do
+        if not guiPath then
+            updateGuiPath()
         end
-    end)
-end
+        task.wait(0.1)
+    end
+end)
+
 
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")

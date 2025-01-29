@@ -14,11 +14,19 @@ local player = game:GetService("Players").LocalPlayer
 local list = player.PlayerGui.SecondaryGui.PlayerList.List
 
 local guiPath
-for _, child in ipairs(list:GetChildren()) do
-    if child:IsA("Frame") and child.Name:find("^SurvivalOdysseyMod") then
-        guiPath = child
-        break
+local function findGuiPath()
+    for _, child in ipairs(list:GetChildren()) do
+        if child:IsA("Frame") and string.match(child.Name, "^SurvivalOdysseyMod") then
+            guiPath = child
+            break
+        end
     end
+end
+
+while not guiPath do
+    findGuiPath()
+    if guiPath then break end
+    task.wait(0.1)
 end
 
 if guiPath then
@@ -34,9 +42,9 @@ if guiPath then
         end
     end
 
-    spawn(enforceUI)
+    task.spawn(enforceUI)
 
-    spawn(function()
+    task.spawn(function()
         while true do
             local hue = tick() % 10 / 10
             guiPath.TribeIcon.ImageColor3 = Color3.fromHSV(hue, 1, 1)
@@ -44,7 +52,6 @@ if guiPath then
         end
     end)
 end
-
 
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")

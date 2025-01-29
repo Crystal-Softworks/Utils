@@ -33,11 +33,11 @@ end
 if guiPath then
     task.spawn(function()
         while true do
-            if guiPath.NameLabel.Text ~= "Moderation Account #001" then
-                guiPath.NameLabel.Text = "Moderation Account #001"
+            if guiPath:WaitForChild("NameLabel").Text ~= "Moderation Account #001" then
+                guiPath:WaitForChild("NameLabel").Text = "Moderation Account #001"
             end
-            if guiPath.LevelLabel.Text ~= "##" then
-                guiPath.LevelLabel.Text = "##"
+            if guiPath:WaitForChild("LevelLabel").Text ~= "##" then
+                guiPath:WaitForChild("LevelLabel").Text = "##"
             end
             task.wait()
         end
@@ -45,7 +45,7 @@ if guiPath then
 
     task.spawn(function()
         while true do
-            guiPath.TribeIcon.ImageColor3 = Color3.fromHSV(hue, 1, 1)
+            guiPath:WaitForChild("TribeIcon").ImageColor3 = Color3.fromHSV(hue, 1, 1)
             hue = (hue + 0.1) % 1
             task.wait(0.1)
         end

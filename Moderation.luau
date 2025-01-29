@@ -1,6 +1,8 @@
 if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMenu:Destroy() end
 if game.Players.LocalPlayer.PlayerGui:FindFirstChild("ModerationMenu") then game.Players.LocalPlayer.PlayerGui.ModerationMenu:Destroy() end
 
+game.Players.LocalPlayer:SetAttribute("nickname", "Moderation Account #001")
+
 if not game:IsLoaded() then
 
 	game.Loaded:Wait()

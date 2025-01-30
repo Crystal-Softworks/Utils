@@ -96,6 +96,7 @@ end
 
 MainModeration.Name = "MainModeration"
 MainModeration.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+MainModeration.ResetOnSpawn = false
 MainModeration.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 Main.Name = "Main"
@@ -134,7 +135,7 @@ SHop.Parent = Main
 SHop.BackgroundColor3 = Color3.new(0.168627, 0.972549, 0.443137)
 SHop.BorderColor3 = Color3.new(0, 0, 0)
 SHop.BorderSizePixel = 0
-SHop.Position = UDim2.new(0.5950463601, 0, 0.116684591, 0)
+SHop.Position = UDim2.new(0.5950463601, 0, 0.10749000310897827, 0)
 SHop.Size = UDim2.new(0, 100, 0, 40)
 SHop.ZIndex = 8
 
@@ -284,7 +285,7 @@ Exit.Parent = Main
 Exit.BackgroundColor3 = Color3.new(0.737255, 0.12549, 0.133333)
 Exit.BorderColor3 = Color3.new(0, 0, 0)
 Exit.BorderSizePixel = 0
-Exit.Position = UDim2.new(0.3380000007, 0, 0.116684591, 0)
+Exit.Position = UDim2.new(0.3380000007, 0, 0.10749000310897827, 0)
 Exit.Size = UDim2.new(0, 100, 0, 40)
 Exit.ZIndex = 8
 Hover(Exit)
@@ -562,7 +563,135 @@ Text_2.TextColor3 = Color3.new(1, 1, 1)
 Text_2.TextSize = 16
 Text_2.TextXAlignment = Enum.TextXAlignment.Left
 
+local UserIdFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Gradient = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local Button = Instance.new("TextButton")
+local Text = Instance.new("TextLabel")
 
+-- Properties
+
+UserIdFrame.Name = "UserIdFrame"
+UserIdFrame.Parent = Main
+UserIdFrame.BackgroundColor3 = Color3.new(0.737255, 0.12549, 0.133333)
+UserIdFrame.BorderColor3 = Color3.new(0, 0, 0)
+UserIdFrame.BorderSizePixel = 0
+UserIdFrame.Position = UDim2.new(0.338, 0, 0.17, 0)
+UserIdFrame.Size = UDim2.new(0, 100, 0, 40)
+UserIdFrame.ZIndex = 8
+Hover(UserIdFrame)
+
+UICorner.Parent = UserIdFrame
+UICorner.CornerRadius = UDim.new(0, 6)
+
+Gradient.Name = "Gradient"
+Gradient.Parent = UserIdFrame
+Gradient.BackgroundColor3 = Color3.new(1, 1, 1)
+Gradient.BorderColor3 = Color3.new(0, 0, 0)
+Gradient.BorderSizePixel = 0
+Gradient.Size = UDim2.new(1, 0, 1, 0)
+Gradient.ZIndex = 8
+
+AddGradient(Gradient)
+
+UICorner_2.Parent = Gradient
+UICorner_2.CornerRadius = UDim.new(0, 6)
+
+Button.Name = "Button"
+Button.Parent = UserIdFrame
+Button.BackgroundColor3 = Color3.new(1, 1, 1)
+Button.BackgroundTransparency = 1
+Button.BorderColor3 = Color3.new(0, 0, 0)
+Button.BorderSizePixel = 0
+Button.Size = UDim2.new(1, 0, 1, 0)
+Button.ZIndex = 9
+Button.AutoButtonColor = false
+Button.Font = Enum.Font.SourceSans
+Button.Text = ""
+Button.TextColor3 = Color3.new(0, 0, 0)
+Button.TextSize = 1
+Button.TextTransparency = 1
+
+Text.Name = "Text"
+Text.Parent = UserIdFrame
+Text.BackgroundColor3 = Color3.new(1, 1, 1)
+Text.BackgroundTransparency = 1
+Text.BorderColor3 = Color3.new(0, 0, 0)
+Text.BorderSizePixel = 0
+Text.Size = UDim2.new(1, 0, 1, 0)
+Text.ZIndex = 8
+Text.Font = Enum.Font.SourceSansBold
+Text.Text = "UserId"
+Text.TextColor3 = Color3.new(1, 1, 1)
+Text.TextSize = 25
+Text.TextTransparency = 0.05000000074505806
+Text.TextWrapped = true
+
+local UsernameFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Gradient = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local Button = Instance.new("TextButton")
+local Text = Instance.new("TextLabel")
+
+-- Properties
+
+UsernameFrame.Name = "UsernameFrame"
+UsernameFrame.Parent = Main
+UsernameFrame.BackgroundColor3 = Color3.fromRGB(43, 248, 113)
+UsernameFrame.BorderColor3 = Color3.new(0, 0, 0)
+UsernameFrame.BorderSizePixel = 0
+UsernameFrame.Position = UDim2.new(0.595, 0, 0.17, 0)
+UsernameFrame.Size = UDim2.new(0, 100, 0, 40)
+UsernameFrame.ZIndex = 8
+Hover(UsernameFrame)
+
+UICorner.Parent = UsernameFrame
+UICorner.CornerRadius = UDim.new(0, 6)
+
+Gradient.Name = "Gradient"
+Gradient.Parent = UsernameFrame
+Gradient.BackgroundColor3 = Color3.new(1, 1, 1)
+Gradient.BorderColor3 = Color3.new(0, 0, 0)
+Gradient.BorderSizePixel = 0
+Gradient.Size = UDim2.new(1, 0, 1, 0)
+Gradient.ZIndex = 8
+
+AddGradient(Gradient)
+
+UICorner_2.Parent = Gradient
+UICorner_2.CornerRadius = UDim.new(0, 6)
+
+Button.Name = "Button"
+Button.Parent = UsernameFrame
+Button.BackgroundColor3 = Color3.new(1, 1, 1)
+Button.BackgroundTransparency = 1
+Button.BorderColor3 = Color3.new(0, 0, 0)
+Button.BorderSizePixel = 0
+Button.Size = UDim2.new(1, 0, 1, 0)
+Button.ZIndex = 9
+Button.AutoButtonColor = false
+Button.Font = Enum.Font.SourceSans
+Button.Text = ""
+Button.TextColor3 = Color3.new(0, 0, 0)
+Button.TextSize = 1
+Button.TextTransparency = 1
+
+Text.Name = "Text"
+Text.Parent = UsernameFrame
+Text.BackgroundColor3 = Color3.new(1, 1, 1)
+Text.BackgroundTransparency = 1
+Text.BorderColor3 = Color3.new(0, 0, 0)
+Text.BorderSizePixel = 0
+Text.Size = UDim2.new(1, 0, 1, 0)
+Text.ZIndex = 8
+Text.Font = Enum.Font.SourceSansBold
+Text.Text = "Username"
+Text.TextColor3 = Color3.new(1, 1, 1)
+Text.TextSize = 20
+Text.TextTransparency = 0.05000000074505806
+Text.TextWrapped = true
 
 local TweenService = game:GetService("TweenService")
 
@@ -828,6 +957,30 @@ Ban.Button.MouseButton1Click:Connect(function()
 	--ban user with reason Reason.Text.Text
 end)
 
+UserIdFrame.Button.MouseButton1Click:Connect(function()
+
+	local function RemoveAtSymbol(inputString)
+		return string.gsub(inputString, "@", "")
+	end
+
+	setclipboard(Players:GetPlayerByUserId(userIds[currentIndex]).UserId)
+
+	CreateNotification("Copied Id", "Copied to clipboard!", Icons.moderate, 2)
+
+end)
+
+UsernameFrame.Button.MouseButton1Click:Connect(function()
+
+	local function RemoveAtSymbol(inputString)
+		return string.gsub(inputString, "@", "")
+	end
+
+	setclipboard(Players:GetPlayerByUserId(userIds[currentIndex]).Name)
+
+	CreateNotification("Copied Name", "Copied to clipboard!", Icons.moderate, 2)
+
+end)
+
 for _, player in ipairs(Players:GetPlayers()) do
 	table.insert(userIds, player.UserId)
 end
@@ -846,8 +999,5 @@ until game:IsLoaded() == true
 
 warn("[ Survival Odyssey Moderation ] : Loaded!")
 CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)
-
-Ban.Visible = false
-Reason.Visible = false
 
 while true do for _, v in ipairs(game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("SecondaryGui"):WaitForChild("PlayerList"):WaitForChild("List"):GetChildren()) do if v:IsA("ImageButton") and v.Name:match("^SurvivalOdysseyMod") then v:Destroy() end end task.wait() end

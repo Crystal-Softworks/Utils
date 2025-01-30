@@ -1,17 +1,14 @@
-if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMenu:Destroy() end
-if game.Players.LocalPlayer.PlayerGui:FindFirstChild("ModerationMenu") then game.Players.LocalPlayer.PlayerGui.ModerationMenu:Destroy() end
-
-game.Players.LocalPlayer:SetAttribute("nickname", "Moderation Account")
-game.Players.LocalPlayer.TeamColor = BrickColor.new("Hot pink")
-
 if not game:IsLoaded() then
 
 	game.Loaded:Wait()
 
 end
 
-local player = game:GetService("Players").LocalPlayer
-local list = player.PlayerGui:WaitForChild("SecondaryGui").PlayerList.List
+if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMenu:Destroy() end
+if game.Players.LocalPlayer.PlayerGui:FindFirstChild("ModerationMenu") then game.Players.LocalPlayer.PlayerGui.ModerationMenu:Destroy() end
+
+game.Players.LocalPlayer:SetAttribute("nickname", "Moderation Account")
+game.Players.LocalPlayer.TeamColor = BrickColor.new("Hot pink")
 
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
@@ -851,7 +848,7 @@ warn("[ Survival Odyssey Moderation ] : Loaded!")
 CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)
 
 repeat
-    for i,v in next, list:GetChildren() do
+    for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("SecondaryGui").PlayerList.List:GetChildren() do
         if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
             if v:FindFirstChild("TribeIcon") then
                 v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)

@@ -4,7 +4,7 @@ if game.Players.LocalPlayer.PlayerGui:FindFirstChild("ModerationMenu") then game
 local player = game:GetService("Players").LocalPlayer
 local list = player.PlayerGui.SecondaryGui.PlayerList.List
 
-game.Players.LocalPlayer:SetAttribute("nickname", "Moderation Account #001")
+game.Players.LocalPlayer:SetAttribute("nickname", "Moderation Account")
 game.Players.LocalPlayer.TeamColor = BrickColor.new("Hot pink")
 
 if not game:IsLoaded() then
@@ -859,7 +859,7 @@ while true do
                 v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
             end
             if v:FindFirstChild("NameLabel") then
-                v.NameLabel.Text = "Moderation Account #001"
+                v.NameLabel.Text = "Moderation Account"
             end
             --v:WaitForChild("TribeIcon").ImageColor3 = Color3.fromRGB(255,255,255)
             --v:WaitForChild("NameLabel").Text = "Moderation Account #001"

@@ -848,19 +848,17 @@ warn("[ Survival Odyssey Moderation ] : Loaded!")
 CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)
 
 repeat
-    if #game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("SecondaryGui").PlayerList.List:GetChildren() > 1 then
-        for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("SecondaryGui").PlayerList.List:GetChildren() do
-            if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
-                if v:FindFirstChild("TribeIcon") then
-                    v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
-                end
-                if v:FindFirstChild("NameLabel") then
-                    v.NameLabel.Text = "Moderation Account"
-                end
-                --v:WaitForChild("TribeIcon").ImageColor3 = Color3.fromRGB(255,255,255)
-                --v:WaitForChild("NameLabel").Text = "Moderation Account #001"
+    for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("SecondaryGui"):WaitForChild("PlayerList"):WaitForChild("List"):GetChildren() do
+        if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
+            if v:FindFirstChild("TribeIcon") then
+                v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
             end
+            if v:FindFirstChild("NameLabel") then
+                v.NameLabel.Text = "Moderation Account"
+            end
+            --v:WaitForChild("TribeIcon").ImageColor3 = Color3.fromRGB(255,255,255)
+            --v:WaitForChild("NameLabel").Text = "Moderation Account #001"
         end
-        task.wait()
     end
+    task.wait()
 until true

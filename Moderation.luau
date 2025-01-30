@@ -848,7 +848,16 @@ warn("[ Survival Odyssey Moderation ] : Loaded!")
 CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)
 
 repeat
-    for i,v in next, game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("SecondaryGui"):WaitForChild("PlayerList"):WaitForChild("List"):GetChildren() do
+	local path
+	if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SecondaryGui") then
+		if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SecondaryGui"):FindFirstChild("PlayerList") then
+			if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SecondaryGui"):FindFirstChild("PlayerList"):FindFirstChild("List") then
+				path = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SecondaryGui"):FindFirstChild("PlayerList"):FindFirstChild("List")
+			end
+		end
+	end
+				
+    for i,v in next, path:GetChildren() do
         if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
             if v:FindFirstChild("TribeIcon") then
                 v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)

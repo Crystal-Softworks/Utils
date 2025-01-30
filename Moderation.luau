@@ -1,9 +1,6 @@
 if game.CoreGui:FindFirstChild("ModerationMenu") then game.CoreGui.ModerationMenu:Destroy() end
 if game.Players.LocalPlayer.PlayerGui:FindFirstChild("ModerationMenu") then game.Players.LocalPlayer.PlayerGui.ModerationMenu:Destroy() end
 
-local player = game:GetService("Players").LocalPlayer
-local list = player.PlayerGui.SecondaryGui.PlayerList.List
-
 game.Players.LocalPlayer:SetAttribute("nickname", "Moderation Account")
 game.Players.LocalPlayer.TeamColor = BrickColor.new("Hot pink")
 
@@ -14,6 +11,9 @@ if not game:IsLoaded() then
     repeat task.wait() until list
 
 end
+
+local player = game:GetService("Players").LocalPlayer
+local list = player.PlayerGui:WaitForChild("SecondaryGui").PlayerList.List
 
 local MainModeration = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")

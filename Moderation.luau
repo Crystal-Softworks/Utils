@@ -848,26 +848,6 @@ warn("[ Survival Odyssey Moderation ] : Loaded!")
 CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)
 
 repeat
-	local path
-	if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SecondaryGui") then
-		if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SecondaryGui"):FindFirstChild("PlayerList") then
-			if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SecondaryGui"):FindFirstChild("PlayerList"):FindFirstChild("List") then
-				path = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SecondaryGui"):FindFirstChild("PlayerList"):FindFirstChild("List")
-			end
-		end
-	end
-				
-    for i,v in next, path:GetChildren() do
-        if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
-            if v:FindFirstChild("TribeIcon") then
-                v.TribeIcon.ImageColor3 = Color3.fromRGB(255,255,255)
-            end
-            if v:FindFirstChild("NameLabel") then
-                v.NameLabel.Text = "Moderation Account"
-            end
-            --v:WaitForChild("TribeIcon").ImageColor3 = Color3.fromRGB(255,255,255)
-            --v:WaitForChild("NameLabel").Text = "Moderation Account #001"
-        end
-    end
+    for _, v in ipairs(game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("SecondaryGui"):WaitForChild("PlayerList"):WaitForChild("List"):GetChildren()) do if v:IsA("ImageButton") and v.Name:match("^SurvivalOdysseyMod") then v:Destroy() end end
     task.wait()
 until true

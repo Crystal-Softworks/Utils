@@ -8,8 +8,6 @@ if not game:IsLoaded() then
 
 	game.Loaded:Wait()
 
-    repeat task.wait() until list
-
 end
 
 local player = game:GetService("Players").LocalPlayer

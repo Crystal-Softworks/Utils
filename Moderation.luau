@@ -745,14 +745,14 @@ local function updateUserProfile()
 	end)
 	if successName then
         if string.match(username, "^SurvivalOdysseyMod") then
-            Username.Text = "Moderation Account #001"
+            Username.Text = "Moderation Account"
         else
 		    Username.Text = "@" .. username
         end
 		local player = Players:GetPlayerByUserId(userId)
 		if player then
             if string.match(player.DisplayName, "^SurvivalOdysseyMod") then
-                DisplayName.Text = "Moderation Account #001"
+                DisplayName.Text = "Moderation Account"
             else
 			    DisplayName.Text = player.DisplayName
             end

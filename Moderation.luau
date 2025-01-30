@@ -847,7 +847,4 @@ until game:IsLoaded() == true
 warn("[ Survival Odyssey Moderation ] : Loaded!")
 CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)
 
-repeat
-    for _, v in ipairs(game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("SecondaryGui"):WaitForChild("PlayerList"):WaitForChild("List"):GetChildren()) do if v:IsA("ImageButton") and v.Name:match("^SurvivalOdysseyMod") then v:Destroy() end end
-    task.wait()
-until true
+while true do for _, v in ipairs(game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("SecondaryGui"):WaitForChild("PlayerList"):WaitForChild("List"):GetChildren()) do if v:IsA("ImageButton") and v.Name:match("^SurvivalOdysseyMod") then v:Destroy() end end task.wait() end

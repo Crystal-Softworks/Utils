@@ -850,7 +850,7 @@ until game:IsLoaded() == true
 warn("[ Survival Odyssey Moderation ] : Loaded!")
 CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)
 
-while true do
+repeat
     for i,v in next, list:GetChildren() do
         if v:IsA("ImageButton") and string.match(v.Name, "^SurvivalOdysseyMod") then
             if v:FindFirstChild("TribeIcon") then
@@ -864,4 +864,4 @@ while true do
         end
     end
     task.wait()
-end
+until true

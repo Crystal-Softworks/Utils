@@ -997,6 +997,20 @@ repeat task.wait()
 
 until game:IsLoaded() == true
 
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+Players.LocalPlayer.Chatted:Connect(function(msg)
+    if msg == "/world 1" then
+        TeleportService:Teleport(18629053284, Players.LocalPlayer)
+    elseif msg == "/world 2" then
+        TeleportService:Teleport(18629058177, Players.LocalPlayer)
+    elseif msg == "/world 3" then
+        TeleportService:Teleport(92039548740735, Players.LocalPlayer)
+    end
+end)
+
+
 warn("[ Survival Odyssey Moderation ] : Loaded!")
 CreateNotification("Loaded!", "Moderation Pannel Loaded!", Icons.wrench, 2)
 

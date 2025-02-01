@@ -793,6 +793,8 @@ local JobId = game.JobId
 local userIds = {}
 local currentIndex = 1
 
+local SelectedPlayer
+
 queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 
 Players.LocalPlayer.OnTeleport:Connect(function(State)
@@ -850,6 +852,7 @@ end
 
 local function updateUserProfile()
 	local userId = userIds[currentIndex]
+	SelectedPlayer = Players:GetPlayerByUserId(userId)
 	if not userId then return end
 
 	--print("Spectate")
@@ -963,7 +966,7 @@ UserIdFrame.Button.MouseButton1Click:Connect(function()
 		return string.gsub(inputString, "@", "")
 	end
 
-	setclipboard(Players:GetPlayerByUserId(userIds[currentIndex]).UserId)
+	setclipboard(SelectedPlayer.UserId)
 
 	CreateNotification("Copied Id", "Copied to clipboard!", Icons.moderate, 2)
 
@@ -975,7 +978,7 @@ UsernameFrame.Button.MouseButton1Click:Connect(function()
 		return string.gsub(inputString, "@", "")
 	end
 
-	setclipboard(Players:GetPlayerByUserId(userIds[currentIndex]).Name)
+	setclipboard(SelectedPlayer.Name)
 
 	CreateNotification("Copied Name", "Copied to clipboard!", Icons.moderate, 2)
 

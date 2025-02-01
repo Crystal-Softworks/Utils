@@ -1000,13 +1000,19 @@ until game:IsLoaded() == true
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
-Players.LocalPlayer.Chatted:Connect(function(msg)
-    if msg == "/world 1" then
-        TeleportService:Teleport(18629053284, Players.LocalPlayer)
-    elseif msg == "/world 2" then
-        TeleportService:Teleport(18629058177, Players.LocalPlayer)
-    elseif msg == "/world 3" then
-        TeleportService:Teleport(92039548740735, Players.LocalPlayer)
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local player = Players.LocalPlayer
+
+player.Chatted:Connect(function(msg)
+    msg = msg:lower():gsub("%s+", "") -- Convert to lowercase and remove spaces
+
+    if msg == "/world1" then
+        TeleportService:Teleport(18629053284, player)
+    elseif msg == "/world2" then
+        TeleportService:Teleport(18629058177, player)
+    elseif msg == "/world3" then
+        TeleportService:Teleport(92039548740735, player) -- Ensure this is a valid Place ID
     end
 end)
 

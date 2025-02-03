@@ -878,10 +878,10 @@ local function updateUserProfile()
         end
 		local player = Players:GetPlayerByUserId(userId)
 		if player then
-            if string.match(player.DisplayName, Players.DisplayName) then
+            if string.match(player.DisplayName, Players.LocalPlayer.DisplayName) then
                 DisplayName.Text = "Moderation Account"
             else
-			    DisplayName.Text = player.DisplayName
+		DisplayName.Text = player.DisplayName
             end
 		else
 			DisplayName.Text = "Display Name Unavailable"

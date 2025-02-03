@@ -861,7 +861,9 @@ local function updateUserProfile()
 	local successThumbnail, thumbnailUrl = pcall(function()
 		return Players:GetUserThumbnailAsync(userId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
 	end)
-	if successThumbnail then
+	if userId == Players.LocalPlayer.UserId then
+        Profile.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+    elseif successThumbnail then
 		Profile.Image = thumbnailUrl
 	else
 		Profile.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"

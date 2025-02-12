@@ -1017,7 +1017,9 @@ player.Chatted:Connect(function(msg)
     elseif msg == "/world2" then
         TeleportService:Teleport(18629058177, player)
     elseif msg == "/world3" then
-        TeleportService:Teleport(92039548740735, player) -- Ensure this is a valid Place ID
+        TeleportService:Teleport(92039548740735, player)
+    elseif msg == "/trading" then
+        TeleportService:Teleport(138634895369259, player)
     end
 end)
 

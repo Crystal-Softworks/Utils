@@ -968,7 +968,7 @@ UserIdFrame.Button.MouseButton1Click:Connect(function()
 		return string.gsub(inputString, "@", "")
 	end
 
-	setclipboard(SelectedPlayer.UserId)
+	setclipboard(tostring(SelectedPlayer.UserId))
 
 	CreateNotification("Copied Id", "Copied to clipboard!", Icons.moderate, 2)
 

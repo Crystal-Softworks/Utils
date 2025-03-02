@@ -27,6 +27,7 @@ end
 for _, v in next, workspace.Entities:GetChildren() do
     if v.Name == "WagonLoot" and v:FindFirstChild("LootGiver") then
         HumanoidRootPart.CFrame = v.WorldPivot
+        v.LootGiver.HoldDuration = 0
         v.LootGiver.RequiresLineOfSight = false
         v.LootGiver.Triggered:Connect(onPromptTriggered)
         task.wait(2)
@@ -37,6 +38,7 @@ end
 workspace.Entities.ChildAdded:Connect(function(child)
     if child.Name == "WagonLoot" and child:FindFirstChild("LootGiver") then
         HumanoidRootPart.CFrame = child.WorldPivot
+        child.LootGiver.HoldDuration = 0
         child.LootGiver.RequiresLineOfSight = false
         child.LootGiver.Triggered:Connect(onPromptTriggered)
         task.wait(2)

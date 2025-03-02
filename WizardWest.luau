@@ -78,7 +78,7 @@ local function serverHop()
 	end
 end
 
-task.delay(1200, function()
+task.delay(600, function()
 
     serverHop()
 

@@ -111,10 +111,11 @@ local function GetNearestTarget()
                     if enemyModel:IsA("Model") and enemyModel:FindFirstChildOfClass("Humanoid") and IsValidPlayer(enemyModel) then
                         local root = enemyModel:FindFirstChild("HumanoidRootPart")
                         if root and IsVisible(root) then
-                            local distance = (root.Position - Camera.CFrame.Position).Magnitude
-                            if distance < closestDistance then
-                                closestDistance = distance
-                                closestTarget = root
+                            local directionToTarget = (root.Position - Camera.CFrame.Position).unit
+                            local dotVal = Camera.CFrame.LookVector:Dot(directionToTarget)
+                            if dotVal > bestDot then
+                                bestDot = dotVal
+                                bestTarget = root
                             end
                         end
                     end

@@ -47,24 +47,25 @@ local function IsValidPlayer(model)
             return targetTeam and targetTeam ~= teamName
         end
     else
-        return true
+        return true  -- AI target
     end
 end
 
 local function GetNearestTarget()
-    local closestTarget = nil
-    local closestDistance = math.huge
+    local bestDot = 0.5
+    local bestTarget = nil
 
     local function CheckModels(folder)
         if folder then
             for _, model in pairs(folder:GetChildren()) do
                 if model:IsA("Model") and model:FindFirstChildOfClass("Humanoid") and IsValidPlayer(model) then
-                    local root = model:FindFirstChild("HumanoidRootPart")
-                    if root and IsVisible(root) then
-                        local distance = (root.Position - Camera.CFrame.Position).Magnitude
-                        if distance < closestDistance then
-                            closestDistance = distance
-                            closestTarget = root
+                    local head = model:FindFirstChild("HumanoidRootPart")
+                    if head and IsVisible(head) then
+                        local directionToTarget = (head.Position - Camera.CFrame.Position).unit
+                        local dotVal = Camera.CFrame.LookVector:Dot(directionToTarget)
+                        if dotVal > bestDot then
+                            bestDot = dotVal
+                            bestTarget = head
                         end
                     end
                 end
@@ -73,19 +74,35 @@ local function GetNearestTarget()
     end
 
     CheckModels(Workspace:FindFirstChild("Characters"))
-    
+
     local MissionsFolder = Workspace:FindFirstChild("Missions")
     if MissionsFolder then
         for _, missionModel in pairs(MissionsFolder:GetChildren()) do
             if missionModel:IsA("Model") then
                 local AISpawners = missionModel:FindFirstChild("AISpawners")
                 if AISpawners then
-                    CheckModels(AISpawners)
+                    for _, spawner in pairs(AISpawners:GetChildren()) do
+                        if spawner:IsA("BasePart") then
+                            for _, enemyModel in pairs(spawner:GetChildren()) do
+                                if enemyModel:IsA("Model") and enemyModel:FindFirstChildOfClass("Humanoid") and IsValidPlayer(enemyModel) then
+                                    local head = enemyModel:FindFirstChild("HumanoidRootPart")
+                                    if head and IsVisible(head) then
+                                        local directionToTarget = (head.Position - Camera.CFrame.Position).unit
+                                        local dotVal = Camera.CFrame.LookVector:Dot(directionToTarget)
+                                        if dotVal > bestDot then
+                                            bestDot = dotVal
+                                            bestTarget = head
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
                 end
             end
         end
     end
-    
+
     local SpiderCave = Workspace:FindFirstChild("MapProps") and Workspace.MapProps:FindFirstChild("SpiderCave")
     if SpiderCave then
         for _, spawner in pairs(SpiderCave:GetChildren()) do
@@ -105,8 +122,8 @@ local function GetNearestTarget()
             end
         end
     end
-    
-    return closestTarget
+
+    return bestTarget
 end
 
 local function AdjustAimForDistance(target)

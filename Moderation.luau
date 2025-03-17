@@ -1408,7 +1408,7 @@ end)
 local Section3 = Window:Section("Moderation")
 
 
-Library.Flags.BanFlags["CopyLabel"] = Section3:CopyLabel("UserId To Ban", "")
+Library.Flags.BanFlags["CopyLabel"] = Section3:CopyLabel("UserId / Username To Moderate", "")
 Library.Flags.BanFlags["Reason"] = Section3:CopyLabel("Reason", "")
 
 Section3:Button("Ban", function()

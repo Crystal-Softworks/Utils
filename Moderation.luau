@@ -1,4 +1,26 @@
-task.wait(8)
+task.wait(3)
+
+local mt = getrawmetatable(game)
+setreadonly(mt, false)
+
+local oldNamecall = mt.__namecall
+
+mt.__namecall = newcclosure(function(self, ...)
+    local method = getnamecallmethod()
+    local args = {...}
+
+    if method == "FireServer" and self.Name == "UseBagItem" and args[1] == "Hack" then
+        return
+    end
+
+    return oldNamecall(self, ...)
+end)
+
+setreadonly(mt, true)
+
+warn("[ CLIENT ] : ' Anti-Cheat has been bypassed. '")
+
+task.wait(5)
 
 local IndexMT; IndexMT = function(self, index)
 	self[index] = setmetatable({}, {

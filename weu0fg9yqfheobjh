@@ -16,6 +16,7 @@ task.spawn(function()
 	until getgenv().Portal == true
 end)
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nlzpx/script/main/Anti%20AFK"))()
 --queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/Crystal-Softworks/Utils/refs/heads/main/weu0fg9yqfheobjh'))()")
 
 -- Utility function to safely wait for a ProximityPrompt via a lookup function

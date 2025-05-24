@@ -4,14 +4,14 @@ getgenv().Portal = false
 task.spawn(function()
 	repeat
 		task.wait()
-		local char = game.Players.LocalPlayer.Character
-		if char and char:FindFirstChild("HumanoidRootPart") then
-			char.HumanoidRootPart.CFrame = CFrame.new(
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(
 				0, -2.5, 37058.3398,
 				0.999954939, 0, 0.00949531421,
 				0, 1, 0,
 				-0.00949531421, 0, 0.999954939
 			)
+		if getgenv().Portal == true then
+			return
 		end
 	until getgenv().Portal == true
 end)
@@ -79,13 +79,15 @@ while true do
 	local altarPrompt = waitForProximityPrompt(getAltarPrompt)
 	fireproximityprompt(altarPrompt)
 
-	task.wait(181)
+	task.wait(182)
 
 	getgenv().Portal = true
 
+	task.wait(0.5)
+
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 9.92639828, 37095.543, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 
-	task.wait(0.5)
+	task.wait(3)
 
 	game:GetService("TeleportService"):Teleport(89744231770777, game.Players.LocalPlayer)
 end

@@ -1,3 +1,5 @@
+task.wait(2)
+
 repeat
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, -2.25, 37058.3398, 0.999954939, 0, 0.00949531421, 0, 1, 0, -0.00949531421, 0, 0.999954939)
 until true

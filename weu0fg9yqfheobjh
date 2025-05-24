@@ -1,4 +1,5 @@
 -- Lock the character at a fixed position forever
+task.wait(2)
 getgenv().Portal = false
 task.spawn(function()
 	repeat

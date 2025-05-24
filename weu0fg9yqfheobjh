@@ -1,5 +1,5 @@
 -- Lock the character at a fixed position forever
-task.wait(5)
+task.wait(2)
 getgenv().Portal = false
 task.spawn(function()
 	repeat
@@ -84,8 +84,10 @@ while true do
 
 	getgenv().Portal = true
 
-	task.wait(0.5)
+	task.wait()
 
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 9.92639828, 37095.543, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+	task.wait(1)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 9.92639828, 37095.543, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 
 	task.wait(3)

@@ -84,6 +84,8 @@ while true do
 
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 9.92639828, 37095.543, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 
+	task.wait(0.5)
+
 	game:GetService("TeleportService"):Teleport(89744231770777, game.Players.LocalPlayer)
 end
 

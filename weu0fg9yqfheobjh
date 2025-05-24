@@ -1,6 +1,7 @@
 -- Lock the character at a fixed position forever
+getgenv().Portal = false
 task.spawn(function()
-	while true do
+	repeat
 		task.wait()
 		local char = game.Players.LocalPlayer.Character
 		if char and char:FindFirstChild("HumanoidRootPart") then
@@ -11,8 +12,10 @@ task.spawn(function()
 				-0.00949531421, 0, 0.999954939
 			)
 		end
-	end
+	until getgenv().Portal == true
 end)
+
+--queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/Crystal-Softworks/Utils/refs/heads/main/weu0fg9yqfheobjh'))()")
 
 -- Utility function to safely wait for a ProximityPrompt via a lookup function
 local function waitForProximityPrompt(getPromptFunc)
@@ -75,7 +78,13 @@ while true do
 	local altarPrompt = waitForProximityPrompt(getAltarPrompt)
 	fireproximityprompt(altarPrompt)
 
-	task.wait(185)
+	task.wait(181)
+
+	getgenv().Portal = true
+
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 9.92639828, 37095.543, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 
 	game:GetService("TeleportService"):Teleport(89744231770777, game.Players.LocalPlayer)
 end
+
+-- Queue script to run on telepor

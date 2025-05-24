@@ -1,15 +1,81 @@
-task.wait(2)
+-- Lock the character at a fixed position forever
+task.spawn(function()
+	while true do
+		task.wait()
+		local char = game.Players.LocalPlayer.Character
+		if char and char:FindFirstChild("HumanoidRootPart") then
+			char.HumanoidRootPart.CFrame = CFrame.new(
+				0, -2.25, 37058.3398,
+				0.999954939, 0, 0.00949531421,
+				0, 1, 0,
+				-0.00949531421, 0, 0.999954939
+			)
+		end
+	end
+end)
 
-repeat
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, -2.25, 37058.3398, 0.999954939, 0, 0.00949531421, 0, 1, 0, -0.00949531421, 0, 0.999954939)
-until true
+-- Utility function to safely wait for a ProximityPrompt via a lookup function
+local function waitForProximityPrompt(getPromptFunc)
+	local prompt
+	repeat
+		task.wait()
+		prompt = getPromptFunc()
+	until prompt
+	return prompt
+end
 
+-- Getters for each proximity prompt
+local function getForcefieldPrompt()
+	local map = workspace:FindFirstChild("Map")
+	if not map then return nil end
+
+	local presets = map:FindFirstChild("Presets")
+	if not presets then return nil end
+
+	local endZone = presets:FindFirstChild("End")
+	if not endZone then return nil end
+
+	local altar = endZone:FindFirstChild("AltarAndForcefield")
+	if not altar then return nil end
+
+	local forcefield = altar:FindFirstChild("Forcefield")
+	if not forcefield then return nil end
+
+	return forcefield:FindFirstChild("ProximityPrompt")
+end
+
+local function getAltarPrompt()
+	local map = workspace:FindFirstChild("Map")
+	if not map then return nil end
+
+	local presets = map:FindFirstChild("Presets")
+	if not presets then return nil end
+
+	local endZone = presets:FindFirstChild("End")
+	if not endZone then return nil end
+
+	local altar = endZone:FindFirstChild("AltarAndForcefield")
+	if not altar then return nil end
+
+	local prompt = altar:FindFirstChild("Prompt")
+	if not prompt then return nil end
+
+	return prompt:FindFirstChild("ProximityPrompt")
+end
+
+-- Main loop to interact with prompts and teleport
 while true do
 	task.wait(1)
-	repeat task.wait() until workspace.Map.Presets.End.AltarAndForcefield.Forcefield.ProximityPrompt
-	fireproximityprompt(workspace.Map.Presets.End.AltarAndForcefield.Forcefield.ProximityPrompt)
+
+	local forcefieldPrompt = waitForProximityPrompt(getForcefieldPrompt)
+	fireproximityprompt(forcefieldPrompt)
+
 	task.wait(0.5)
-	fireproximityprompt(workspace.Map.Presets.End.AltarAndForcefield.Prompt.ProximityPrompt)
+
+	local altarPrompt = waitForProximityPrompt(getAltarPrompt)
+	fireproximityprompt(altarPrompt)
+
 	task.wait(185)
+
 	game:GetService("TeleportService"):Teleport(89744231770777, game.Players.LocalPlayer)
 end
